@@ -10,7 +10,7 @@ gnome-extensions install https://extensions.gnome.org/extension-data/no-overview
 gnome-extensions enable no-overview@fthx;
 
 # Prep for Second Run
-wget -P /opt/scripts <secondRun.sh>
+wget -P /opt/scripts https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/secondRun.sh
 chmod +x /opt/scripts/secondRun.sh
 
 sudo crontab -u root -r;
