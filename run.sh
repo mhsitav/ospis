@@ -17,7 +17,7 @@ gnome-extensions enable no-overview@fthx;
 sed -i 's/^#WaylandEnable=false/WaylandEnable=false/' /etc/gdm3/daemon.conf;
 
 #Setup Autologin
-sed -i "/\[daemon\]/a AutomaticLoginEnable=true\nAutomaticLogin=optisigns" /etc/gmd3/daemon.conf;
+sed -i "/\[daemon\]/a AutomaticLoginEnable=true\nAutomaticLogin=optisigns" /etc/gdm3/daemon.conf;
 
 # Prep for Second Run
 wget -P /opt/scripts https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/secondRun.sh
