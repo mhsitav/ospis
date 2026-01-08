@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sleep 30;
+
 touch /opt/scripts/update.sh;
 echo "#!/bin/bash" > /opt/scripts/update.sh;
 echo "sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y;" >> /opt/scripts/update.sh;
@@ -17,4 +19,7 @@ wget -P /home/optisigns/Downloads https://links.optisigns.com/linux-64;
 chmod +x /home/optisigns/Downloads/linux-64;
 /home/optisigns/Downloads/linux-64 > /dev/null 2>&1 &
 $(curl -s https://release.optisigns.com/optisigns-remote-agent-setup-linux.sh -L | sh) > /dev/null 2>&1 &
+
+rm -- "$0";
+
 sudo reboot;
