@@ -28,7 +28,6 @@
 
 #sudo reboot;
 
-#!/bin/bash
 set -euo pipefail
 
 LOG_FILE="/var/log/mhs-post-install.log"
