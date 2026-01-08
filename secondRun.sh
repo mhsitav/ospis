@@ -30,6 +30,8 @@ SCRIPT_DIR="/opt/scripts"
 UPDATE_SCRIPT="${SCRIPT_DIR}/update.sh"
 OPTISIGNS_USER="optisigns"
 OPTISIGNS_SCRIPT="${SCRIPT_DIR}/RunMe.sh"
+AUTOSTART_DIR="${HOME_DIR}/.config/autostart"
+DESKTOP_FILE="${AUTOSTART_DIR}/runme.desktop"
 
 exec > >(tee -a "$LOG_FILE") 2>&1
 
