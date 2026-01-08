@@ -1,29 +1,97 @@
 #!/bin/bash
 
-touch /var/log/mhs-setup.log;
+#touch /var/log/mhs-setup.log;
 
-echo "Log file created. Starting Post-Install." >> /var/log/mhs-setup.log;
-sleep 2;
+#echo "Log file created. Starting Post-Install." >> /var/log/mhs-setup.log;
+#sleep 2;
 # Install additional packages
-sudo apt update && sudo apt upgrade -y;
-echo "Repos updated and existing packages upgraded." >> /var/log/mhs-setup.log;
-sleep 2;
-$(sudo apt install -y libfuse2 fuse gnome-shell-extension-manager unclutter wget) >> /var/log/mhs-setup.log;
-sleep 5;
+#sudo apt update && sudo apt upgrade -y;
+#echo "Repos updated and existing packages upgraded." >> /var/log/mhs-setup.log;
+#sleep 2;
+#$(sudo apt install -y libfuse2 fuse gnome-shell-extension-manager unclutter wget) >> /var/log/mhs-setup.log;
+#sleep 5;
 
 # Prep for Second Run
-echo "Downloading second run script." >> /var/log/mhs-setup.log;
-wget -O /opt/scripts/secondRun.sh https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/secondRun.sh;
-chmod +x /opt/scripts/secondRun.sh;
+#echo "Downloading second run script." >> /var/log/mhs-setup.log;
+#wget -O /opt/scripts/secondRun.sh https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/secondRun.sh;
+#chmod +x /opt/scripts/secondRun.sh;
 
 # Set crontabs
-sudo crontab -u root -r;
-sudo crontab -u root -l 2>/dev/null; 
-echo "@reboot sudo /opt/scripts/secondRun.sh" | sudo crontab -u root -;
-echo "Set crontab for second run script. Deleting run.sh and rebooting." >> /var/log/mhs-setup.log;
+#sudo crontab -u root -r;
+#sudo crontab -u root -l 2>/dev/null; 
+#echo "@reboot sudo /opt/scripts/secondRun.sh" | sudo crontab -u root -;
+#echo "Set crontab for second run script. Deleting run.sh and rebooting." >> /var/log/mhs-setup.log;
 
-chmod -R 777 /opt/scripts;
+#chmod -R 777 /opt/scripts;
 
-rm -- "$0";
+#rm -- "$0";
 
-sudo reboot;
+#sudo reboot;
+
+#!/bin/bash
+set -euo pipefail
+
+LOG_FILE="/var/log/mhs-post-install.log"
+SCRIPT_DIR="/opt/scripts"
+SECOND_RUN_SCRIPT="${SCRIPT_DIR}/secondRun.sh"
+
+exec > >(tee -a "$LOG_FILE") 2>&1
+
+echo "===== MHS Setup Started: $(date) ====="
+
+# Ensure directories exist
+echo "Ensuring required directories exist..."
+mkdir -p "$SCRIPT_DIR"
+touch "$LOG_FILE"
+
+# Update system
+echo "Updating repositories and upgrading packages..."
+apt update
+apt upgrade -y
+echo "System update completed."
+
+# Install required packages
+echo "Installing required packages..."
+apt install -y \
+  libfuse2 \
+  fuse \
+  gnome-shell-extension-manager \
+  unclutter \
+  wget
+
+echo "Package installation completed."
+
+sleep 2
+
+# Download second-run script
+echo "Downloading second-run script..."
+wget -q -O "$SECOND_RUN_SCRIPT" \
+  https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/secondRun.sh
+
+chmod +x "$SECOND_RUN_SCRIPT"
+chmod 755 "$SECOND_RUN_SCRIPT"
+
+echo "Second-run script downloaded and permissions set."
+
+# Configure root crontab safely
+echo "Configuring root crontab..."
+ROOT_CRON=$(crontab -u root -l 2>/dev/null || true)
+
+# Remove old second-run entries if present
+ROOT_CRON=$(echo "$ROOT_CRON" | grep -v "secondRun.sh" || true)
+
+# Add reboot entry
+ROOT_CRON=$(echo "$ROOT_CRON"; echo "@reboot $SECOND_RUN_SCRIPT")
+
+echo "$ROOT_CRON" | crontab -u root -
+
+echo "Root crontab configured for second-run script."
+
+# Cleanup and reboot
+echo "Removing first-run script..."
+rm -- "$0"
+
+echo "Rebooting system to trigger second-run script..."
+echo "===== MHS Setup Completed: $(date) ====="
+
+reboot
