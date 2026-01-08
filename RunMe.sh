@@ -67,9 +67,7 @@ fi
 # -----------------------------
 echo "Downloading OptiSigns AppImage..."
 
-mkdir -p "$DOWNLOAD_DIR"
-
-wget -q -O "$OPTISIGNS_APPIMAGE" https://links.optisigns.com/linux-64
+wget -O "$OPTISIGNS_APPIMAGE" https://links.optisigns.com/linux-64
 chmod +x "$OPTISIGNS_APPIMAGE"
 
 echo "Launching OptiSigns AppImage..."
