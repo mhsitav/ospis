@@ -3,7 +3,7 @@ sleep 2;
 # Install additional packages
 sudo apt update && sudo apt upgrade -y;
 sleep 2;
-sudo apt install -y libfuse2 fuse gnome-shell-extension-manager unclutter;
+sudo apt install -y libfuse2 fuse gnome-shell-extension-manager unclutter wget;
 sleep 5;
 
 # Prep for Second Run
