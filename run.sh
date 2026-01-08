@@ -11,18 +11,11 @@ sleep 5;
 wget -O /opt/scripts/secondRun.sh https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/secondRun.sh;
 chmod +x /opt/scripts/secondRun.sh;
 
-wget -O /opt/scripts/usrun.sh https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/usrun.sh;
-chmod +x /opt/scripts/usrun.sh;
-
-wget -O /opt/scripts/usSecondRun.sh https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/usSecondRun.sh;
-chmod +x /opt/scripts/usSecondRun.sh;
-
 # Set crontabs
 sudo crontab -u root -r;
 sudo crontab -u root -l 2>/dev/null; 
 echo "@reboot sudo /opt/scripts/secondRun.sh" | sudo crontab -u root -;
 
-echo '"@reboot /bin/bash -c "/opt/scripts/usrun.sh"' | sudo crontab -u optisigns -;
 
 chmod -R 777 /opt/scripts;
 
