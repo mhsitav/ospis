@@ -7,9 +7,6 @@ gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type not
 sleep 2;
 gsettings set org.gnome.desktop.notifications show-banners false;
 
-# Gnome Extensions
-gnome-extensions install https://extensions.gnome.org/extension-data/no-overviewfthx.v21.shell-extension.zip;
-
 rm -- "$0"
 
 reboot;
