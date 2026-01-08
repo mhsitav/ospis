@@ -14,7 +14,7 @@ crontab -u root -r;
 echo -e "$(crontab -u root -l)\n@reboot unclutter -idle 5 -root" | crontab -u root -;
 
 crontab -u optisigns -r;
-echo "@reboot /opt/scripts/usSecondRun.sh" | crontab -u optisigns -;
+echo '@reboot /bin/bash -c "/opt/scripts/usSecondRun.sh"' | crontab -u optisigns -;
 
 rm -- "$0";
 
