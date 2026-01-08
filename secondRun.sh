@@ -26,6 +26,8 @@
 set -euo pipefail
 
 LOG_FILE="/var/log/mhs-post-install.log"
+OPTISIGNS_USER="optisigns"
+HOME_DIR="/home/${OPTISIGNS_USER}"
 SCRIPT_DIR="/opt/scripts"
 UPDATE_SCRIPT="${SCRIPT_DIR}/update.sh"
 OPTISIGNS_USER="optisigns"
