@@ -83,7 +83,7 @@ echo "Creating GNOME autostart entry...";
 
 mkdir -p "$AUTOSTART_DIR"
 
-cat << EOF > "$DESKTOP_FILE"
+cat << 'EOF' > "$DESKTOP_FILE"
 [Desktop Entry]
 Type=Application
 Name=OptiSigns Startup
