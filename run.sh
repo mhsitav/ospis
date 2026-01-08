@@ -42,6 +42,7 @@ echo "===== MHS Setup Started: $(date) ====="
 echo "Ensuring required directories exist..."
 mkdir -p "$SCRIPT_DIR"
 touch "$LOG_FILE"
+chmod 777 "$LOG_FILE"
 
 # Update system
 echo "Updating repositories and upgrading packages..."
