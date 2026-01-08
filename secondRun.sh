@@ -17,4 +17,7 @@ chmod 777 /home/optisigns/Desktop/RunMeFirst.sh;
 wget -O /home/optisigns/Desktop/RunMeSecond.sh https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/RunMeSecond.sh
 chmod 777 /home/optisigns/Desktop/RunMeSecond.sh;
 
+# Gnome Extensions
+gnome-extensions install https://extensions.gnome.org/extension-data/no-overviewfthx.v21.shell-extension.zip;
+
 rm -- "$0";
