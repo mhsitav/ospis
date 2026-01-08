@@ -15,14 +15,6 @@ echo -e "$(crontab -u root -l)\n@reboot unclutter -idle 5 -root" | crontab -u ro
 
 crontab -u optisigns -r;
 echo "@reboot /opt/scripts/usSecondRun.sh" | crontab -u optisigns -;
-echo -e "$(crontab -u optisigns -l)\n@reboot /home/optisigns/Downloads/linux-64" | crontab -u optisigns -;
-
-# Download and Install Optisigns (FINAL STEP)
-export APPIMAGE_SILENT_INSTALL=0
-wget -O /home/optisigns/Downloads/linux-64 https://links.optisigns.com/linux-64;
-chmod +x /home/optisigns/Downloads/linux-64;
-/home/optisigns/Downloads/linux-64 > /dev/null 2>&1 &
-$(curl -s https://release.optisigns.com/optisigns-remote-agent-setup-linux.sh -L | sh) > /dev/null 2>&1 &
 
 rm -- "$0";
 
