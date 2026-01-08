@@ -7,10 +7,10 @@ sudo apt install -y libfuse2 fuse gnome-shell-extension-manager unclutter;
 sleep 5;
 
 # Prep for Second Run
-wget -P /opt/scripts https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/secondRun.sh;
+wget -O /opt/scripts/secondRun.sh https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/secondRun.sh;
 chmod +x /opt/scripts/secondRun.sh;
 
-wget -P /opt/scripts https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/usrun.sh;
+wget -O /opt/scripts/usrun.sh https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/usrun.sh;
 chmod +x /opt/scripts/usrun.sh;
 
 sudo crontab -u root -r;
