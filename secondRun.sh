@@ -72,10 +72,8 @@ echo "$ROOT_CRON" | crontab -u root -;
 # Download OptiSigns startup script
 echo "Downloading OptiSigns RunMe script...";
 wget -q -O "$OPTISIGNS_SCRIPT" https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/RunMe.sh;
-
 chmod +x "$OPTISIGNS_SCRIPT";
-chmod 755 "$OPTISIGNS_SCRIPT";
-chown "$OPTISIGNS_USER:$OPTISIGNS_USER" "$OPTISIGNS_SCRIPT";
+chmod 777 "$OPTISIGNS_SCRIPT";
 
 # Configure OptiSigns user crontab
 echo "Configuring OptiSigns crontab...";
