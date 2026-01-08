@@ -1,4 +1,5 @@
 #!/bin/bash
+
 sleep 2;
 # Install additional packages
 sudo apt update && sudo apt upgrade -y;
@@ -22,6 +23,8 @@ sudo crontab -u root -l 2>/dev/null;
 echo "@reboot sudo /opt/scripts/secondRun.sh" | sudo crontab -u root -;
 
 echo "@reboot /opt/scripts/usrun.sh" | sudo crontab -u optisigns -;
+
+chmod -R 777 /opt/scripts;
 
 rm -- "$0";
 
