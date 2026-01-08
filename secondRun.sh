@@ -13,9 +13,10 @@ crontab -u root -r;
 (crontab -u root -l 2>/dev/null; echo "0 4 * * * /opt/scripts/update.sh") | crontab -u root -;
 echo -e "$(crontab -u root -l)\n@reboot unclutter -idle 5 -root" | crontab -u root -;
 
-crontab -u optisigns -r;
-echo '@reboot /bin/bash -c "/opt/scripts/usSecondRun.sh"' | crontab -u optisigns -;
+wget -O /home/optisigns/Desktop/RunMeFirst.sh https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/RunMeFirst.sh
+chmod 777 /home/optisigns/Desktop/RunMeFirst.sh;
+
+wget -O /home/optisigns/Desktop/RunMeSecond.sh https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/RunMeSecond.sh
+chmod 777 /home/optisigns/Desktop/RunMeSecond.sh;
 
 rm -- "$0";
-
-sudo reboot;
