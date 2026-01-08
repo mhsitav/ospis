@@ -29,7 +29,7 @@ LOG_FILE="/var/log/mhs-post-install.log"
 SCRIPT_DIR="/opt/scripts"
 UPDATE_SCRIPT="${SCRIPT_DIR}/update.sh"
 OPTISIGNS_USER="optisigns"
-OPTISIGNS_SCRIPT="/home/optisigns/Desktop/RunMe.sh"
+OPTISIGNS_SCRIPT="${SCRIPT_DIR}/RunMe.sh"
 
 exec > >(tee -a "$LOG_FILE") 2>&1
 
