@@ -20,4 +20,6 @@ echo "@reboot sudo /opt/scripts/secondRun.sh" | sudo crontab -u root -;
 sudo crontab -u optisigns -l 2>/dev/null;
 echo "@reboot /opt/scripts/usrun.sh" | sudo crontab -u optisigns -;
 
+rm -- "$0";
+
 sudo reboot;
