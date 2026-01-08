@@ -81,7 +81,6 @@ gnome-extensions install https://extensions.gnome.org/extension-data/no-overview
 echo "Removing installer script...";
 rm -- "$0";
 
-reboot;
 echo "Autostart entry created:"
 cat "$DESKTOP_FILE"
 
