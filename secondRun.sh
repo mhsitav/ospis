@@ -88,7 +88,7 @@ cat << 'EOF' > "$DESKTOP_FILE"
 Type=Application
 Name=OptiSigns Startup
 Comment=Launch OptiSigns at login
-Exec=bash -c "sleep 10 && ${OPTISIGNS_SCRIPT}"
+Exec=bash -c "sleep 10 && /opt/scripts/RunMe.sh"
 Terminal=false
 X-GNOME-Autostart-enabled=true
 EOF
