@@ -1,7 +1,5 @@
 #!/bin/bash
 
-sleep 90;
-
 touch /opt/scripts/update.sh;
 echo "#!/bin/bash" > /opt/scripts/update.sh;
 echo "sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y;" >> /opt/scripts/update.sh;
