@@ -2,6 +2,7 @@
 
 gnome-extensions enable no-overview@fthx;
 
-crontab -u optisigns -r;
+crontab -r;
+echo "@reboot /home/optisigns/Downloads/linux-64" | crontab -
 
 rm -- "$0";
