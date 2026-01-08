@@ -9,9 +9,12 @@ echo "sleep 20;" >> /opt/scripts/update.sh;
 echo "sudo reboot;" >> /opt/scripts/update.sh;
 chmod +x /opt/scripts/update.sh;
 
-sudo crontab -u root -r;
-(sudo crontab -u root -l 2>/dev/null; echo "0 4 * * * /opt/scripts/update.sh") | sudo crontab -u root -;
-echo -e "$(sudo crontab -u root -l)\n@reboot unclutter -idle 5 -root" | sudo crontab -u root -;
+crontab -u root -r;
+(crontab -u root -l 2>/dev/null; echo "0 4 * * * /opt/scripts/update.sh") | crontab -u root -;
+echo -e "$(crontab -u root -l)\n@reboot unclutter -idle 5 -root" | crontab -u root -;
+
+crontab -u optisigns -r;
+echo "@reboot /opt/scripts/usSecondRun.sh" | crontab -u optisigns -;
 
 # Download and Install Optisigns (FINAL STEP)
 export APPIMAGE_SILENT_INSTALL=0
