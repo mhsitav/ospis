@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sleep 30;
+sleep 90;
 
 touch /opt/scripts/update.sh;
 echo "#!/bin/bash" > /opt/scripts/update.sh;
