@@ -97,3 +97,5 @@ echo "Removing installer script..."
 rm -- "$0"
 
 echo "===== MHS Post Install Completed: $(date) ====="
+
+reboot;
