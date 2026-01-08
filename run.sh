@@ -20,7 +20,7 @@ echo "$HOST" > /etc/hostname;
 sed -i "s/127.0.1.1.*/127.0.1.1\t$HOST/" /etc/hosts;
 echo 'optisigns:$PASS' | chpasswd;
 sed -i 's/^#WaylandEnable=false/WaylandEnable=false/' /etc/gdm3/daemon.conf;
-sed -i "/\[daemon\]/a AutomaticLoginEnable=true\nAutomaticLogin=optisigns" /etc/gdm3/daemon.conf;
+#sed -i "/\[daemon\]/a AutomaticLoginEnable=true\nAutomaticLogin=optisigns" /etc/gdm3/daemon.conf;
 
 # Ensure directories exist
 echo "Ensuring required directories exist..."
