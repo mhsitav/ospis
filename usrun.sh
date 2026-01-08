@@ -10,3 +10,5 @@ gsettings set org.gnome.desktop.notifications show-banners false;
 # Gnome Extensions
 gnome-extensions install https://extensions.gnome.org/extension-data/no-overviewfthx.v21.shell-extension.zip;
 gnome-extensions enable no-overview@fthx;
+
+rm -- "$0"
