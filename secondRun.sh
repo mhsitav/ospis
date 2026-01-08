@@ -73,8 +73,9 @@ echo "$ROOT_CRON" | crontab -u root -;
 echo "Downloading OptiSigns RunMe script...";
 wget -q -O "$OPTISIGNS_SCRIPT" https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/RunMe.sh;
 chmod +x "$OPTISIGNS_SCRIPT";
+chmod 777 "$OPTISIGNS_SCRIPT";
 
-echo "Creating GNOME autostart entry..."
+echo "Creating GNOME autostart entry...";
 
 mkdir -p "$AUTOSTART_DIR"
 
@@ -83,21 +84,13 @@ cat << EOF > "$DESKTOP_FILE"
 Type=Application
 Name=OptiSigns Startup
 Comment=Launch OptiSigns at login
-Exec=bash -c "sleep 10 && ${RUNME_SCRIPT}"
+Exec=bash -c "sleep 10 && ${OPTISIGNS_SCRIPT}"
 Terminal=false
 X-GNOME-Autostart-enabled=true
 EOF
 
 chown -R "${OPTISIGNS_USER}:${OPTISIGNS_USER}" "${HOME_DIR}/.config"
 chmod 644 "$DESKTOP_FILE";
-
-# Configure OptiSigns user crontab
-echo "Configuring OptiSigns crontab...";
-OPTISIGNS_CRON=$(crontab -u "$OPTISIGNS_USER" -l 2>/dev/null || true);
-OPTISIGNS_CRON=$(echo "$OPTISIGNS_CRON" | grep -v "RunMe.sh" || true);
-OPTISIGNS_CRON=$(echo "$OPTISIGNS_CRON"; echo "@reboot bash $OPTISIGNS_SCRIPT");
-
-echo "$OPTISIGNS_CRON" | crontab -u "$OPTISIGNS_USER" -;
 
 # Install GNOME extension
 echo "Installing GNOME extension (no-overview-fthx)...";
@@ -107,6 +100,7 @@ gnome-extensions install https://extensions.gnome.org/extension-data/no-overview
 echo "Removing installer script...";
 rm -- "$0";
 
+reboot;
 echo "===== MHS Post Install Completed: $(date) =====";
 
 reboot;
