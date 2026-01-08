@@ -74,6 +74,23 @@ echo "Downloading OptiSigns RunMe script...";
 wget -q -O "$OPTISIGNS_SCRIPT" https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/RunMe.sh;
 chmod +x "$OPTISIGNS_SCRIPT";
 
+echo "Creating GNOME autostart entry..."
+
+mkdir -p "$AUTOSTART_DIR"
+
+cat << EOF > "$DESKTOP_FILE"
+[Desktop Entry]
+Type=Application
+Name=OptiSigns Startup
+Comment=Launch OptiSigns at login
+Exec=bash -c "sleep 10 && ${RUNME_SCRIPT}"
+Terminal=false
+X-GNOME-Autostart-enabled=true
+EOF
+
+chown -R "${OPTISIGNS_USER}:${OPTISIGNS_USER}" "${HOME_DIR}/.config"
+chmod 644 "$DESKTOP_FILE";
+
 # Configure OptiSigns user crontab
 echo "Configuring OptiSigns crontab...";
 OPTISIGNS_CRON=$(crontab -u "$OPTISIGNS_USER" -l 2>/dev/null || true);
