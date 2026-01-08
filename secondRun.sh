@@ -53,49 +53,46 @@ echo "Rebooting system..."
 reboot
 EOF
 
-chmod +x "$UPDATE_SCRIPT"
+chmod +x "$UPDATE_SCRIPT";
 
 # Configure root crontab safely
-echo "Configuring root crontab..."
-ROOT_CRON=$(crontab -u root -l 2>/dev/null || true)
+echo "Configuring root crontab...";
+ROOT_CRON=$(crontab -u root -l 2>/dev/null || true);
 
 # Remove old update job if present
-ROOT_CRON=$(echo "$ROOT_CRON" | grep -v "/opt/scripts/update.sh" || true)
-ROOT_CRON=$(echo "$ROOT_CRON" | grep -v "unclutter -idle" || true)
+ROOT_CRON=$(echo "$ROOT_CRON" | grep -v "/opt/scripts/update.sh" || true);
+ROOT_CRON=$(echo "$ROOT_CRON" | grep -v "unclutter -idle" || true);
 
 # Add updated entries
-ROOT_CRON=$(echo "$ROOT_CRON"; echo "0 4 * * * $UPDATE_SCRIPT")
-ROOT_CRON=$(echo "$ROOT_CRON"; echo "@reboot unclutter -idle 5 -root")
+ROOT_CRON=$(echo "$ROOT_CRON"; echo "0 4 * * * $UPDATE_SCRIPT");
+ROOT_CRON=$(echo "$ROOT_CRON"; echo "@reboot unclutter -idle 5 -root");
 
-echo "$ROOT_CRON" | crontab -u root -
+echo "$ROOT_CRON" | crontab -u root -;
 
 # Download OptiSigns startup script
-echo "Downloading OptiSigns RunMe script..."
-wget -q -O "$OPTISIGNS_SCRIPT" \
-  https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/RunMe.sh
+echo "Downloading OptiSigns RunMe script...";
+wget -q -O "$OPTISIGNS_SCRIPT" https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/RunMe.sh;
 
-chmod +x "$OPTISIGNS_SCRIPT"
-chmod 755 "$OPTISIGNS_SCRIPT"
-chown "$OPTISIGNS_USER:$OPTISIGNS_USER" "$OPTISIGNS_SCRIPT"
+chmod +x "$OPTISIGNS_SCRIPT";
+chmod 755 "$OPTISIGNS_SCRIPT";
+chown "$OPTISIGNS_USER:$OPTISIGNS_USER" "$OPTISIGNS_SCRIPT";
 
 # Configure OptiSigns user crontab
-echo "Configuring OptiSigns crontab..."
-OPTISIGNS_CRON=$(crontab -u "$OPTISIGNS_USER" -l 2>/dev/null || true)
-OPTISIGNS_CRON=$(echo "$OPTISIGNS_CRON" | grep -v "RunMe.sh" || true)
-OPTISIGNS_CRON=$(echo "$OPTISIGNS_CRON"; echo "@reboot bash $OPTISIGNS_SCRIPT")
+echo "Configuring OptiSigns crontab...";
+OPTISIGNS_CRON=$(crontab -u "$OPTISIGNS_USER" -l 2>/dev/null || true);
+OPTISIGNS_CRON=$(echo "$OPTISIGNS_CRON" | grep -v "RunMe.sh" || true);
+OPTISIGNS_CRON=$(echo "$OPTISIGNS_CRON"; echo "@reboot bash $OPTISIGNS_SCRIPT");
 
-echo "$OPTISIGNS_CRON" | crontab -u "$OPTISIGNS_USER" -
+echo "$OPTISIGNS_CRON" | crontab -u "$OPTISIGNS_USER" -;
 
 # Install GNOME extension
-echo "Installing GNOME extension (no-overview-fthx)..."
-gnome-extensions install \
-  https://extensions.gnome.org/extension-data/no-overviewfthx.v21.shell-extension.zip \
-  || echo "GNOME extension install failed (possibly already installed)"
+echo "Installing GNOME extension (no-overview-fthx)...";
+gnome-extensions install https://extensions.gnome.org/extension-data/no-overviewfthx.v21.shell-extension.zip || echo "GNOME extension install failed (possibly already installed)";
 
 # Self-delete
-echo "Removing installer script..."
-rm -- "$0"
+echo "Removing installer script...";
+rm -- "$0";
 
-echo "===== MHS Post Install Completed: $(date) ====="
+echo "===== MHS Post Install Completed: $(date) =====";
 
 reboot;
