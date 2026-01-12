@@ -20,6 +20,10 @@ fi
 # -----------------------------
 # GNOME System Settings
 # -----------------------------
+# Install GNOME extension
+echo "Installing GNOME extension (no-overview-fthx)...";
+gnome-extensions install https://extensions.gnome.org/extension-data/no-overviewfthx.v21.shell-extension.zip || echo "GNOME extension install failed (possibly already installed)";
+
 echo "Configuring GNOME power and notification settings..."
 
 gsettings set org.gnome.settings-daemon.plugins.power idle-dim false
