@@ -73,6 +73,9 @@ EOF
 sudo chown -R "${OPTISIGNS_USER}:${OPTISIGNS_USER}" "${HOME_DIR}/.config"
 sudo chmod 644 "$DESKTOP_FILE";
 
+# Make reboot command sudo-less
+echo 'optisigns ALL=NOPASSWD:/sbin/reboot' | sudo EDITOR='tee -a' visudo
+
 # Self-delete
 echo "Removing installer script...";
 rm -- "$0";
