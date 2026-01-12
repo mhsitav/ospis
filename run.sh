@@ -10,18 +10,6 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 
 echo "===== MHS Setup Started: $(date) ====="
 
-#echo "Setting hostname and password...";
-#IFACE=$(ls /sys/class/net | grep -E "^en" | head -n1);
-#MAC=$(cat /sys/class/net/$IFACE/address | tr -d ":");
-#HOST="optisigns-mhs-$(echo -n $MAC | tail -c 6)";
-#PASS="Opti$MAC";
-
-#echo "$HOST" > /etc/hostname;
-#sed -i "s/127.0.1.1.*/127.0.1.1\t$HOST/" /etc/hosts;
-#sudo echo 'optisigns:$PASS' | chpasswd;
-#sudo sed -i 's/^#WaylandEnable=false/WaylandEnable=false/' /etc/gdm3/daemon.conf;
-#sudo sed -i "/\[daemon\]/a AutomaticLoginEnable=true\nAutomaticLogin=optisigns" /etc/gdm3/daemon.conf;
-
 # Ensure directories exist
 #echo "Ensuring required directories exist..."
 sudo mkdir -p "$SCRIPT_DIR"
