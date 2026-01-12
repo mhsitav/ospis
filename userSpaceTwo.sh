@@ -1,5 +1,14 @@
 #!/bin/bash
 
+LOG_FILE="/var/log/mhs-post-install.log"
+OPTISIGNS_USER="optisigns"
+HOME_DIR="/home/${OPTISIGNS_USER}"
+DOWNLOAD_DIR="/home/optisigns/Downloads"
+OPTISIGNS_APPIMAGE="${DOWNLOAD_DIR}/linux-64"
+AUTOSTART_DIR="${HOME_DIR}/.config/autostart"
+DESKTOP_FILE="${AUTOSTART_DIR}/userspace.desktop"
+USER_TWO_SCRIPT="/opt/scripts/userSpaceTwo.sh"
+
 echo "===== MHS User Space Configuration 2/2 Started: $(date) ====="
 
 # -----------------------------
