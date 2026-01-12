@@ -8,7 +8,7 @@ HOME_DIR="/home/${OPTISIGNS_USER}"
 SCRIPT_DIR="/opt/scripts"
 UPDATE_SCRIPT="${SCRIPT_DIR}/update.sh"
 OPTISIGNS_USER="optisigns"
-USER_ONE_SCRIPT="${SCRIPT_DIR}/RunMe.sh"
+USER_ONE_SCRIPT="${SCRIPT_DIR}/userSpaceOne.sh"
 AUTOSTART_DIR="${HOME_DIR}/.config/autostart"
 DESKTOP_FILE="${AUTOSTART_DIR}/userspace.desktop"
 
