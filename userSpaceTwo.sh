@@ -41,6 +41,11 @@ export APPIMAGE_SILENT_INSTALL=0
 echo "Installing OptiSigns remote agent..."
 curl -fsSL https://release.optisigns.com/optisigns-remote-agent-setup-linux.sh | sh >/dev/null 2>&1 &
 
+echo "Removing userSpaceTwo setup script..."
+rm -- "$0"
+
+rm "$DESKTOP_FILE";
+
 echo "OptiSigns installation started."
 echo "===== MHS User Space Configuration 2/2 Completed: $(date) ====="
 echo "Rebooting";
