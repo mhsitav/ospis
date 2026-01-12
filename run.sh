@@ -18,15 +18,15 @@ PASS="Opti$MAC";
 
 echo "$HOST" > /etc/hostname;
 sed -i "s/127.0.1.1.*/127.0.1.1\t$HOST/" /etc/hosts;
-echo 'optisigns:$PASS' | chpasswd;
-sed -i 's/^#WaylandEnable=false/WaylandEnable=false/' /etc/gdm3/daemon.conf;
-sed -i "/\[daemon\]/a AutomaticLoginEnable=true\nAutomaticLogin=optisigns" /etc/gdm3/daemon.conf;
+sudo echo 'optisigns:$PASS' | chpasswd;
+sudo sed -i 's/^#WaylandEnable=false/WaylandEnable=false/' /etc/gdm3/daemon.conf;
+sudo sed -i "/\[daemon\]/a AutomaticLoginEnable=true\nAutomaticLogin=optisigns" /etc/gdm3/daemon.conf;
 
 # Ensure directories exist
 echo "Ensuring required directories exist..."
-mkdir -p "$SCRIPT_DIR"
-touch "$LOG_FILE"
-chmod 777 "$LOG_FILE"
+sudo mkdir -p "$SCRIPT_DIR"
+sudo touch "$LOG_FILE"
+sudo chmod 777 "$LOG_FILE"
 
 # Update system
 echo "Updating repositories and upgrading packages..."
@@ -49,11 +49,11 @@ sleep 2
 
 # Download second-run script
 echo "Downloading second-run script..."
-wget -q -O "$SECOND_RUN_SCRIPT" \
+sudo wget -q -O "$SECOND_RUN_SCRIPT" \
   https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/secondRun.sh
 
-chmod +x "$SECOND_RUN_SCRIPT"
-chmod 755 "$SECOND_RUN_SCRIPT"
+sudo chmod +x "$SECOND_RUN_SCRIPT"
+sudo chmod 755 "$SECOND_RUN_SCRIPT"
 
 echo "Second-run script downloaded and permissions set."
 
