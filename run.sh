@@ -41,6 +41,7 @@ apt install -y \
   fuse \
   gnome-shell-extension-manager \
   unclutter \
+  wget \
   curl
 
 echo "Package installation completed."
