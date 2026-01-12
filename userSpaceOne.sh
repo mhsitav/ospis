@@ -73,4 +73,4 @@ echo "Removing userSpaceOne setup script..."
 rm -- "$0"
 
 echo "===== MHS User Space Configuration 1/2 Completed: $(date) ====="
-reboot;
+/sbin/reboot;
