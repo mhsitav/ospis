@@ -44,4 +44,4 @@ curl -fsSL https://release.optisigns.com/optisigns-remote-agent-setup-linux.sh |
 echo "OptiSigns installation started."
 echo "===== MHS User Space Configuration 2/2 Completed: $(date) ====="
 echo "Rebooting";
-reboot
+/sbin/reboot;
