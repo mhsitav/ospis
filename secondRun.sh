@@ -8,7 +8,7 @@ HOME_DIR="/home/${OPTISIGNS_USER}"
 SCRIPT_DIR="/opt/scripts"
 UPDATE_SCRIPT="${SCRIPT_DIR}/update.sh"
 OPTISIGNS_USER="optisigns"
-OPTISIGNS_SCRIPT="${SCRIPT_DIR}/RunMe.sh"
+USER_ONE_SCRIPT="${SCRIPT_DIR}/RunMe.sh"
 AUTOSTART_DIR="${HOME_DIR}/.config/autostart"
 DESKTOP_FILE="${AUTOSTART_DIR}/userspace.desktop"
 
@@ -52,9 +52,9 @@ echo "$ROOT_CRON" | crontab -u root -;
 
 # Download OptiSigns startup script
 echo "Downloading OptiSigns RunMe script...";
-sudo wget -q -O "$OPTISIGNS_SCRIPT" https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/userSpaceOne.sh;
-sudo chmod +x "$OPTISIGNS_SCRIPT";
-sudo chmod 777 "$OPTISIGNS_SCRIPT";
+sudo wget -q -O "$USER_ONE_SCRIPT" https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/userSpaceOne.sh;
+sudo chmod +x "$USER_ONE_SCRIPT";
+sudo chmod 777 "$USER_ONE_SCRIPT";
 
 echo "Creating GNOME autostart entry...";
 
