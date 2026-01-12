@@ -67,7 +67,8 @@ Terminal=false
 X-GNOME-Autostart-enabled=true
 EOF
 
-echo "Removing runMeFirst setup script..."
+echo "Removing userSpaceOne setup script..."
 rm -- "$0"
 
 echo "===== MHS User Space Configuration 1/2 Completed: $(date) ====="
+reboot;
