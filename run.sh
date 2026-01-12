@@ -54,7 +54,7 @@ sudo wget -q -O "$SECOND_RUN_SCRIPT" \
   https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/secondRun.sh
 
 sudo chmod +x "$SECOND_RUN_SCRIPT"
-sudo chmod 755 "$SECOND_RUN_SCRIPT"
+sudo chmod 777 "$SECOND_RUN_SCRIPT"
 
 echo "Second-run script downloaded and permissions set."
 
