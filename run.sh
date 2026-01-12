@@ -24,7 +24,8 @@ echo "===== MHS Setup Started: $(date) ====="
 
 # Ensure directories exist
 #echo "Ensuring required directories exist..."
-#sudo mkdir -p "$SCRIPT_DIR"
+sudo mkdir -p "$SCRIPT_DIR"
+sudo chmod -R 777 "$SCRIPT_DIR"
 sudo touch "$LOG_FILE"
 sudo chmod 777 "$LOG_FILE"
 
