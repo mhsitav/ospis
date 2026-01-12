@@ -73,10 +73,6 @@ EOF
 sudo chown -R "${OPTISIGNS_USER}:${OPTISIGNS_USER}" "${HOME_DIR}/.config"
 sudo chmod 644 "$DESKTOP_FILE";
 
-# Install GNOME extension
-echo "Installing GNOME extension (no-overview-fthx)...";
-gnome-extensions install https://extensions.gnome.org/extension-data/no-overviewfthx.v21.shell-extension.zip || echo "GNOME extension install failed (possibly already installed)";
-
 # Self-delete
 echo "Removing installer script...";
 rm -- "$0";
