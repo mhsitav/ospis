@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "===== MHS User Space Configuration 2/2 Started: $(date) ====="
+
 # -----------------------------
 # GNOME Extensions
 # -----------------------------
@@ -31,3 +33,6 @@ echo "Installing OptiSigns remote agent..."
 curl -fsSL https://release.optisigns.com/optisigns-remote-agent-setup-linux.sh | sh >/dev/null 2>&1 &
 
 echo "OptiSigns installation started."
+echo "===== MHS User Space Configuration 2/2 Completed: $(date) ====="
+echo "Rebooting";
+reboot
