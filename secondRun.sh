@@ -31,7 +31,7 @@ echo "----- System Update Started: $(date) -----"
 apt update && apt upgrade -y && apt autoremove -y
 sleep 20
 echo "Rebooting system..."
-reboot
+sudo reboot
 EOF
 
 chmod +x "$UPDATE_SCRIPT";
