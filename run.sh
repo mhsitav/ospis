@@ -79,4 +79,4 @@ rm -- "$0"
 echo "Rebooting system to trigger second-run script..."
 echo "===== MHS Setup Completed: $(date) ====="
 
-reboot
+sudo reboot
