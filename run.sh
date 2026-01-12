@@ -11,7 +11,7 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 echo "===== MHS Setup Started: $(date) ====="
 
 echo "Setting hostname and password...";
-IFACE=$(/sys/class/net | grep -E "^en" | head -n1);
+IFACE=$(ls /sys/class/net | grep -E "^en" | head -n1);
 MAC=$(cat /sys/class/net/$IFACE/address | tr -d ":");
 HOST="optisigns-mhs-$(echo -n $MAC | tail -c 6)";
 PASS="Opti$MAC";
