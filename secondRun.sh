@@ -87,4 +87,4 @@ cat "$DESKTOP_FILE"
 echo "Second run completed. Changes will take effect on next login."
 echo "===== MHS Post Install Completed: $(date) =====";
 
-reboot;
+sudo reboot;
