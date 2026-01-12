@@ -6,6 +6,7 @@ LOG_FILE="/var/log/mhs-post-install.log"
 OPTISIGNS_USER="optisigns"
 DOWNLOAD_DIR="/home/optisigns/Downloads"
 OPTISIGNS_APPIMAGE="${DOWNLOAD_DIR}/linux-64"
+AUTOSTART_DIR="${HOME_DIR}/.config/autostart"
 DESKTOP_FILE="${AUTOSTART_DIR}/userspace.desktop"
 USER_TWO_SCRIPT="/opt/scripts/userSpaceTwo.sh"
 
