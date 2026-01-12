@@ -6,10 +6,11 @@ LOG_FILE="/var/log/mhs-post-install.log"
 OPTISIGNS_USER="optisigns"
 DOWNLOAD_DIR="/home/optisigns/Downloads"
 OPTISIGNS_APPIMAGE="${DOWNLOAD_DIR}/linux-64"
+DESKTOP_FILE="${AUTOSTART_DIR}/userspace.desktop"
 
 exec > >(tee -a "$LOG_FILE") 2>&1
 
-echo "===== MHS Final Configuration Started: $(date) ====="
+echo "===== MHS User Space Configuration Started: $(date) ====="
 
 # Ensure running as optisigns user for GNOME settings
 if [[ "$(id -un)" != "$OPTISIGNS_USER" ]]; then
@@ -36,10 +37,25 @@ gsettings set org.gnome.desktop.notifications show-banners false
 
 echo "GNOME power and notification settings applied."
 
+
+
 # -----------------------------
 # Cleanup
 # -----------------------------
+echo "Wipe autorun file and recreate..."
+rm "$DESKTOP_FILE";
+
+cat << 'EOF' > "$DESKTOP_FILE"
+[Desktop Entry]
+Type=Application
+Name=OptiSigns Startup
+Comment=Launch OptiSigns at login
+Exec=bash -c "sleep 10 && /opt/scripts/userSpaceTwo.sh"
+Terminal=false
+X-GNOME-Autostart-enabled=true
+EOF
+
 echo "Removing runMeFirst setup script..."
 rm -- "$0"
 
-echo "===== MHS Final Configuration Completed: $(date) ====="
+echo "===== MHS User Space Configuration 1/2 Completed: $(date) ====="
