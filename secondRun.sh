@@ -18,7 +18,7 @@ echo "===== MHS Post Install Started: $(date) ====="
 
 # Ensure script directory exists
 echo "Ensuring script directory exists..."
-mkdir -p "$SCRIPT_DIR"
+sudo mkdir -p "$SCRIPT_DIR"
 
 # Create update script
 echo "Creating system update script..."
@@ -52,13 +52,13 @@ echo "$ROOT_CRON" | crontab -u root -;
 
 # Download OptiSigns startup script
 echo "Downloading OptiSigns RunMe script...";
-wget -q -O "$OPTISIGNS_SCRIPT" https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/RunMe.sh;
-chmod +x "$OPTISIGNS_SCRIPT";
-chmod 777 "$OPTISIGNS_SCRIPT";
+sudo wget -q -O "$OPTISIGNS_SCRIPT" https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/RunMe.sh;
+sudo chmod +x "$OPTISIGNS_SCRIPT";
+sudo chmod 777 "$OPTISIGNS_SCRIPT";
 
 echo "Creating GNOME autostart entry...";
 
-mkdir -p "$AUTOSTART_DIR"
+sudo mkdir -p "$AUTOSTART_DIR"
 
 cat << 'EOF' > "$DESKTOP_FILE"
 [Desktop Entry]
@@ -70,8 +70,8 @@ Terminal=false
 X-GNOME-Autostart-enabled=true
 EOF
 
-chown -R "${OPTISIGNS_USER}:${OPTISIGNS_USER}" "${HOME_DIR}/.config"
-chmod 644 "$DESKTOP_FILE";
+sudo chown -R "${OPTISIGNS_USER}:${OPTISIGNS_USER}" "${HOME_DIR}/.config"
+sudo chmod 644 "$DESKTOP_FILE";
 
 # Install GNOME extension
 echo "Installing GNOME extension (no-overview-fthx)...";
