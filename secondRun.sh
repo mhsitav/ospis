@@ -10,7 +10,7 @@ UPDATE_SCRIPT="${SCRIPT_DIR}/update.sh"
 OPTISIGNS_USER="optisigns"
 OPTISIGNS_SCRIPT="${SCRIPT_DIR}/RunMe.sh"
 AUTOSTART_DIR="${HOME_DIR}/.config/autostart"
-DESKTOP_FILE="${AUTOSTART_DIR}/runme.desktop"
+DESKTOP_FILE="${AUTOSTART_DIR}/userspace.desktop"
 
 exec > >(tee -a "$LOG_FILE") 2>&1
 
@@ -52,7 +52,7 @@ echo "$ROOT_CRON" | crontab -u root -;
 
 # Download OptiSigns startup script
 echo "Downloading OptiSigns RunMe script...";
-sudo wget -q -O "$OPTISIGNS_SCRIPT" https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/RunMe.sh;
+sudo wget -q -O "$OPTISIGNS_SCRIPT" https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/userSpaceOne.sh;
 sudo chmod +x "$OPTISIGNS_SCRIPT";
 sudo chmod 777 "$OPTISIGNS_SCRIPT";
 
@@ -65,7 +65,7 @@ cat << 'EOF' > "$DESKTOP_FILE"
 Type=Application
 Name=OptiSigns Startup
 Comment=Launch OptiSigns at login
-Exec=bash -c "sleep 10 && /opt/scripts/RunMe.sh"
+Exec=bash -c "sleep 10 && /opt/scripts/userSpaceOne.sh"
 Terminal=false
 X-GNOME-Autostart-enabled=true
 EOF
