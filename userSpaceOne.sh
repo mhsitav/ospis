@@ -20,6 +20,11 @@ if [[ "$(id -un)" != "$OPTISIGNS_USER" ]]; then
 fi
 
 # -----------------------------
+# Path modification
+# -----------------------------
+PATH=${PATH}:/sbin
+
+# -----------------------------
 # GNOME System Settings
 # -----------------------------
 # Install GNOME extension
