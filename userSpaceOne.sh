@@ -7,6 +7,7 @@ OPTISIGNS_USER="optisigns"
 DOWNLOAD_DIR="/home/optisigns/Downloads"
 OPTISIGNS_APPIMAGE="${DOWNLOAD_DIR}/linux-64"
 DESKTOP_FILE="${AUTOSTART_DIR}/userspace.desktop"
+USER_TWO_SCRIPT="/opt/scripts/userSpaceTwo.sh"
 
 exec > >(tee -a "$LOG_FILE") 2>&1
 
@@ -37,7 +38,13 @@ gsettings set org.gnome.desktop.notifications show-banners false
 
 echo "GNOME power and notification settings applied."
 
-
+# -----------------------------
+# Download userSpaceTwo
+# -----------------------------
+echo "Downloading User Space Two script...";
+sudo wget -q -O "$USER_TWO_SCRIPT" https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/userSpaceOne.sh;
+sudo chmod +x "$USER_TWO_SCRIPT";
+sudo chmod 777 "$USER_TWO_SCRIPT";
 
 # -----------------------------
 # Cleanup
