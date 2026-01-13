@@ -19,7 +19,7 @@ echo "===== MHS Post Install Started: $(date) ====="
 # Ensure script directory exists
 echo "Ensuring script directory exists..."
 sudo mkdir -p "$SCRIPT_DIR"
-
+sleep 2;
 # Create update script
 echo "Creating system update script..."
 cat << 'EOF' > "$UPDATE_SCRIPT"
@@ -33,26 +33,28 @@ sleep 20
 echo "Rebooting system..."
 sudo reboot
 EOF
-
+sleep 2;
 chmod +x "$UPDATE_SCRIPT";
-
+sleep 2;
 # Configure root crontab safely
 echo "Configuring root crontab...";
 ROOT_CRON=$(crontab -u root -l 2>/dev/null || true);
-
+sleep 2;
 # Remove old update job if present
 ROOT_CRON=$(echo "$ROOT_CRON" | grep -v "/opt/scripts/update.sh" || true);
 ROOT_CRON=$(echo "$ROOT_CRON" | grep -v "unclutter -idle" || true);
-
+sleep 2;
 # Add updated entries
 ROOT_CRON=$(echo "$ROOT_CRON"; echo "0 4 * * * $UPDATE_SCRIPT");
 ROOT_CRON=$(echo "$ROOT_CRON"; echo "@reboot unclutter -idle 5 -root");
-
+sleep 2;
 echo "$ROOT_CRON" | crontab -u root -;
+sleep 10;
 
 # Download OptiSigns startup script
 echo "Downloading User space script one...";
-wget -O "$USER_ONE_SCRIPT" https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/userSpaceOne.sh;
+wget -O "$USER_ONE_SCRIPT" https://raw.githubusercontent.co/mhsitav/ospis/refs/heads/main/userSpaceOne.sh;
+sleep 2;
 echo "Setting permissions for script...";
 chmod +x "$USER_ONE_SCRIPT";
 
@@ -69,13 +71,13 @@ Exec=bash -c "sleep 10 && /opt/scripts/userSpaceOne.sh"
 Terminal=false
 X-GNOME-Autostart-enabled=true
 EOF
-
+sleep 2;
 sudo chown -R "${OPTISIGNS_USER}:${OPTISIGNS_USER}" "${HOME_DIR}/.config"
 sudo chmod 644 "$DESKTOP_FILE";
-
+sleep 2;
 # Make reboot command sudo-less
 echo 'optisigns ALL=NOPASSWD:/sbin/reboot' | sudo EDITOR='tee -a' visudo
-
+sleep 2;
 # Self-delete
 echo "Removing installer script...";
 rm -- "$0";
