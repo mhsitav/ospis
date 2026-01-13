@@ -51,9 +51,10 @@ ROOT_CRON=$(echo "$ROOT_CRON"; echo "@reboot unclutter -idle 5 -root");
 echo "$ROOT_CRON" | crontab -u root -;
 
 # Download OptiSigns startup script
-echo "Downloading User Space One script...";
+echo "Downloading User space script one...";
 wget -q -O "$USER_ONE_SCRIPT" https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/userSpaceOne.sh;
-sudo chmod -R 777 "$SCRIPT_DIR";
+echo "Setting permissions for script...";
+chmod +x "$SCRIPT_DIR";
 
 echo "Creating GNOME autostart entry...";
 
