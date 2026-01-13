@@ -44,9 +44,8 @@ echo "GNOME power and notification settings applied."
 # Download userSpaceTwo
 # -----------------------------
 echo "Downloading User Space Two script...";
-sudo wget -q -O "$USER_TWO_SCRIPT" https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/userSpaceTwo.sh;
-sudo chmod +x "$USER_TWO_SCRIPT";
-sudo chmod 777 "$USER_TWO_SCRIPT";
+wget -q -O "$USER_TWO_SCRIPT" https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/userSpaceTwo.sh;
+chmod +x "$USER_TWO_SCRIPT";
 
 # -----------------------------
 # Cleanup
