@@ -49,8 +49,16 @@ echo "Removing userSpaceTwo setup script..."
 rm -- "$0"
 
 rm "$DESKTOP_FILE";
+cat << 'EOF' > "$DESKTOP_FILE"
+[Desktop Entry]
+Type=Application
+Name=OptiSigns Startup
+Comment=Launch OptiSigns at login
+Exec=bash -c "$OPTISIGNS_APPIMAGE --no-sandbox"
+Terminal=false
+X-GNOME-Autostart-enabled=true
+EOF
 
-echo "OptiSigns installation started."
 echo "===== MHS User Space Configuration 2/2 Completed: $(date) ====="
 echo "Rebooting";
 /sbin/reboot;
