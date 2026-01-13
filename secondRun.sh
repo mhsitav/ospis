@@ -52,8 +52,8 @@ echo "$ROOT_CRON" | crontab -u root -;
 
 # Download OptiSigns startup script
 echo "Downloading User Space One script...";
-sudo wget -q -O "$USER_ONE_SCRIPT" https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/userSpaceOne.sh;
-sudo chmod 777 "$USER_ONE_SCRIPT";
+wget -q -O "$USER_ONE_SCRIPT" https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/userSpaceOne.sh;
+sudo chmod -R 777 "$SCRIPT_DIR";
 
 echo "Creating GNOME autostart entry...";
 
