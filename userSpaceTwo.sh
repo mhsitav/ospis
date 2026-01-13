@@ -9,6 +9,8 @@ AUTOSTART_DIR="${HOME_DIR}/.config/autostart"
 DESKTOP_FILE="${AUTOSTART_DIR}/userspace.desktop"
 USER_TWO_SCRIPT="/opt/scripts/userSpaceTwo.sh"
 
+exec > >(tee -a "$LOG_FILE") 2>&1
+
 echo "===== MHS User Space Configuration 2/2 Started: $(date) ====="
 
 # -----------------------------
