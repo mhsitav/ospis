@@ -64,5 +64,3 @@ EOF
 
 
 echo "===== MHS User Space Configuration 2/2 Completed: $(date) ====="
-echo "Rebooting";
-/sbin/reboot;
