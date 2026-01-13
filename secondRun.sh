@@ -53,7 +53,7 @@ sleep 10;
 
 # Download OptiSigns startup script
 echo "Downloading User space script one...";
-wget -O "$USER_ONE_SCRIPT" https://raw.githubusercontent.co/mhsitav/ospis/refs/heads/main/userSpaceOne.sh;
+wget -O "$USER_ONE_SCRIPT" https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/userSpaceOne.sh;
 sleep 2;
 echo "Setting permissions for script...";
 chmod +x "$USER_ONE_SCRIPT";
