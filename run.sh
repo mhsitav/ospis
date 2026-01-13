@@ -37,6 +37,9 @@ echo "Package installation completed."
 
 sleep 2
 
+# Set timezone
+sudo timedatectl set-timezone America/New_York
+
 # Download second-run script
 echo "Downloading second-run script..."
 sudo wget -q -O "$SECOND_RUN_SCRIPT" \
