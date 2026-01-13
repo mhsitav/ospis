@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 LOG_FILE="/var/log/mhs-post-install.log"
 OPTISIGNS_USER="optisigns"
 HOME_DIR="/home/${OPTISIGNS_USER}"
