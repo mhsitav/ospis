@@ -35,11 +35,12 @@ apt install -y \
 
 echo "Package installation completed."
 
-sleep 2
+sleep 5;
 
 # Set timezone
 echo "Setting timezone";
 sudo timedatectl set-timezone America/New_York
+sleep 2;
 
 # Download second-run script
 echo "Downloading second-run script..."
