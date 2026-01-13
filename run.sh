@@ -38,6 +38,7 @@ echo "Package installation completed."
 sleep 2
 
 # Set timezone
+echo "Setting timezone";
 sudo timedatectl set-timezone America/New_York
 
 # Download second-run script
