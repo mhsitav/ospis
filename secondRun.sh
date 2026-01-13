@@ -52,7 +52,7 @@ echo "$ROOT_CRON" | crontab -u root -;
 
 # Download OptiSigns startup script
 echo "Downloading User space script one...";
-wget -q -O "$USER_ONE_SCRIPT" https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/userSpaceOne.sh;
+wget -O "$USER_ONE_SCRIPT" https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/userSpaceOne.sh;
 echo "Setting permissions for script...";
 chmod +x "$USER_ONE_SCRIPT";
 
