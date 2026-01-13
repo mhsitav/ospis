@@ -56,8 +56,8 @@ rm "$DESKTOP_FILE";
 cat << 'EOF' > "$DESKTOP_FILE"
 [Desktop Entry]
 Type=Application
-Name=OptiSigns Startup
-Comment=Launch OptiSigns at login
+Name=User Space Script Two autolaunch
+Comment=Launch User Space script two at login
 Exec=bash -c "sleep 10 && /opt/scripts/userSpaceTwo.sh"
 Terminal=false
 X-GNOME-Autostart-enabled=true
