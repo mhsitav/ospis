@@ -50,7 +50,8 @@ rm -- "$0"
 
 rm "$DESKTOP_FILE";
 
-echo "@reboot ${OPTISIGNS_APPIMAGE} --no-sandbox" | crontab -u "$OPTISIGNS_USER" -l
+
+{ crontab -l -u "$OPTISIGNS_USER"; echo "@reboot ${OPTISIGNS_APPIMAGE --no-sandbox" ; } | crontab -u "$OPTISIGNS_USER" -
 
 echo "===== MHS User Space Configuration 2/2 Completed: $(date) ====="
 echo "Rebooting";
