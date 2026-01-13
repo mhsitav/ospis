@@ -65,8 +65,8 @@ sudo mkdir -p "$AUTOSTART_DIR"
 cat << 'EOF' > "$DESKTOP_FILE"
 [Desktop Entry]
 Type=Application
-Name=OptiSigns Startup
-Comment=Launch OptiSigns at login
+Name=User Space Script One Autolaunch
+Comment=Launch User Space script one at login
 Exec=bash -c "sleep 10 && /opt/scripts/userSpaceOne.sh"
 Terminal=false
 X-GNOME-Autostart-enabled=true
