@@ -9,6 +9,7 @@ DOWNLOAD_DIR="/home/optisigns/Downloads"
 OPTISIGNS_APPIMAGE="${DOWNLOAD_DIR}/linux-64"
 AUTOSTART_DIR="${HOME_DIR}/.config/autostart"
 DESKTOP_FILE="${AUTOSTART_DIR}/userspace.desktop"
+OPTISIGNS_STARTUP_FILE="${AUTOSTART_DIR}/optisigns.desktop"
 USER_TWO_SCRIPT="/opt/scripts/userSpaceTwo.sh"
 
 exec > >(tee -a "$LOG_FILE") 2>&1
@@ -50,21 +51,16 @@ rm -- "$0"
 
 rm "$DESKTOP_FILE";
 
-echo "Second-run script downloaded and permissions set."
-
-# Configure user crontab safely
-echo "Configuring user crontab..."
-OPTISIGNS_CRON=$(crontab -u $(whoami) -l 2>/dev/null || true)
-
-# Remove old second-run entries if present
-OPTISIGNS_CRON=$(echo "$OPTISIGNS_CRON" | grep -v "linux-64" || true)
-
-# Add reboot entry
-OPTISIGNS_CRON=$(echo "$OPTISIGNS_CRON"; echo "@reboot $OPTISIGNS_APPIMAGE --no-sandbox")
-
-echo "$OPTISIGNS_CRON" | crontab -u $(whoami) -
-
-echo "User crontab configured for OptiSigns autostart."
+cat << 'EOF' > "$OPTISIGNS_STARTUP_FILE"
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=OptiSigns Digital Signage
+Comment=OptiSigns Digital Signage startup script
+Exec="$OPTISIGNS_APPIMAGE"
+StartupNotify=false
+Terminal=false
+EOF
 
 
 echo "===== MHS User Space Configuration 2/2 Completed: $(date) ====="
