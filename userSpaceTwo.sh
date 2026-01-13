@@ -50,8 +50,22 @@ rm -- "$0"
 
 rm "$DESKTOP_FILE";
 
+echo "Second-run script downloaded and permissions set."
 
-{ crontab -l -u "$OPTISIGNS_USER" 2>/dev/null; echo "@reboot ${OPTISIGNS_APPIMAGE} --no-sandbox" ; } | crontab -u "$OPTISIGNS_USER" -
+# Configure user crontab safely
+echo "Configuring user crontab..."
+OPTISIGNS_CRON=$(crontab -u $(whoami) -l 2>/dev/null || true)
+
+# Remove old second-run entries if present
+OPTISIGNS_CRON=$(echo "$OPTISIGNS_CRON" | grep -v "linux-64" || true)
+
+# Add reboot entry
+OPTISIGNS_CRON=$(echo "$OPTISIGNS_CRON"; echo "@reboot $OPTISIGNS_APPIMAGE --no-sandbox")
+
+echo "$OPTISIGNS_CRON" | crontab -u $(whoami) -
+
+echo "User crontab configured for OptiSigns autostart."
+
 
 echo "===== MHS User Space Configuration 2/2 Completed: $(date) ====="
 echo "Rebooting";
