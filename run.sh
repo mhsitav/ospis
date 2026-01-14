@@ -40,8 +40,8 @@ sleep 5;
 
 # Set timezone
 echo "Setting timezone";
+sudo systemctl enable systemd-timesyncd.service;
 sudo timedatectl set-timezone America/New_York
-sudo systemctl enable systemd-timesyncd.service
 sleep 2;
 
 # Download second-run script
