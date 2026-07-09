@@ -66,6 +66,10 @@ sleep 2;
 echo "Setting permissions for Agent installer...";
 chmod +x "$ECAGENT";
 
+# Configure DNS
+nmcli con mod "Wired connection 1" ipv4.dns "8.8.8.8 1.1.1.1 10.10.10.10";
+
+# Configure GNOME autostart
 echo "Creating GNOME autostart entry...";
 
 sudo mkdir -p "$AUTOSTART_DIR"
