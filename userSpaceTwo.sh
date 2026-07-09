@@ -1,0 +1,68 @@
+#!/bin/bash
+
+set -euo pipefail
+
+LOG_FILE="/var/log/mhs-post-install.log"
+OPTISIGNS_USER="optisigns"
+HOME_DIR="/home/${OPTISIGNS_USER}"
+DOWNLOAD_DIR="/home/optisigns/Downloads"
+OPTISIGNS_APPIMAGE="${DOWNLOAD_DIR}/linux-64"
+AUTOSTART_DIR="${HOME_DIR}/.config/autostart"
+DESKTOP_FILE="${AUTOSTART_DIR}/userspace.desktop"
+OPTISIGNS_STARTUP_FILE="${AUTOSTART_DIR}/optisigns.desktop"
+USER_TWO_SCRIPT="/opt/scripts/userSpaceTwo.sh"
+
+exec > >(tee -a "$LOG_FILE") 2>&1
+
+echo "===== MHS User Space Configuration 2/2 Started: $(date) ====="
+
+# -----------------------------
+# GNOME Extensions
+# -----------------------------
+echo "Enabling GNOME extension: no-overview@fthx"
+
+if gnome-extensions list | grep -q "no-overview@fthx"; then
+  gnome-extensions enable no-overview@fthx
+  echo "GNOME extension enabled."
+else
+  echo "WARNING: GNOME extension no-overview@fthx not found."
+fi
+
+# -----------------------------
+# Download & Install OptiSigns
+# -----------------------------
+echo "Downloading OptiSigns AppImage..."
+
+wget -q -O "$OPTISIGNS_APPIMAGE" https://links.optisigns.com/linux-64
+chmod +x "$OPTISIGNS_APPIMAGE"
+
+echo "Launching OptiSigns AppImage..."
+export APPIMAGE_SILENT_INSTALL=0
+"$OPTISIGNS_APPIMAGE" >/dev/null 2>&1 &
+
+# -----------------------------
+# Install OptiSigns Remote Agent
+# -----------------------------
+echo "Installing OptiSigns remote agent..."
+curl -fsSL https://release.optisigns.com/optisigns-remote-agent-setup-linux.sh | sh >/dev/null 2>&1 &
+
+echo "Removing userSpaceTwo setup script..."
+rm -- "$0"
+
+rm "$DESKTOP_FILE";
+
+cat << EOF > "$OPTISIGNS_STARTUP_FILE"
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=OptiSigns Digital Signage
+Comment=OptiSigns Digital Signage startup script
+Exec=$OPTISIGNS_APPIMAGE
+StartupNotify=false
+Terminal=false
+EOF
+
+
+echo "===== MHS User Space Configuration 2/2 Completed: $(date) ====="
+echo "Rebooting...";
+/sbin/reboot;
