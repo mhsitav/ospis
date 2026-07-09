@@ -11,6 +11,7 @@ OPTISIGNS_USER="optisigns"
 USER_ONE_SCRIPT="${SCRIPT_DIR}/userSpaceOne.sh"
 AUTOSTART_DIR="${HOME_DIR}/.config/autostart"
 DESKTOP_FILE="${AUTOSTART_DIR}/userspace.desktop"
+ECAGENT="${HOME_DIR}/Downloads/UEMS_LinuxAgent.bin"
 
 exec > >(tee -a "$LOG_FILE") 2>&1
 
@@ -51,12 +52,19 @@ sleep 2;
 echo "$ROOT_CRON" | crontab -u root -;
 sleep 10;
 
-# Download OptiSigns startup script
+# Download first user space script
 echo "Downloading User space script one...";
 wget -O "$USER_ONE_SCRIPT" https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/userSpaceOne.sh;
 sleep 2;
 echo "Setting permissions for script...";
 chmod +x "$USER_ONE_SCRIPT";
+
+# Download Endpoint Central Agent
+echo "Downloading Endpoint Central Agent...";
+wget -O "$ECAGENT" https://raw.githubusercontent.com/mhsitav/ospis/refs/heads/main/UEMS_LinuxAgent.bin;
+sleep 2;
+echo "Setting permissions for Agent installer...";
+chmod +x "$ECAGENT";
 
 echo "Creating GNOME autostart entry...";
 
