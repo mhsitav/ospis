@@ -10,6 +10,8 @@ OPTISIGNS_APPIMAGE="${DOWNLOAD_DIR}/linux-64"
 AUTOSTART_DIR="${HOME_DIR}/.config/autostart"
 DESKTOP_FILE="${AUTOSTART_DIR}/userspace.desktop"
 USER_TWO_SCRIPT="/opt/scripts/userSpaceTwo.sh"
+IFACE=$(ls /sys/class/net | grep -E "^en" | head -n1);
+MAC=$(cat /sys/class/net/$IFACE/address | tr -d ":");
 
 exec > >(tee -a "$LOG_FILE") 2>&1
 
@@ -40,7 +42,9 @@ gsettings set org.gnome.desktop.notifications show-banners false
 
 echo "GNOME power and notification settings applied."
 
-#
+# -----------------------------
+# Configure RDP
+# -----------------------------
 
 mkdir -p ~/.local/share/gnome-remote-desktop/;
 
@@ -53,7 +57,7 @@ openssl req -newkey rsa:2048 -nodes \
 grdctl rdp set-tls-key ~/.local/share/gnome-remote-desktop/tls.key
 grdctl rdp set-tls-cert ~/.local/share/gnome-remote-desktop/tls.crt
 
-grdctl rdp set-credentials optisigns Opti;
+grdctl rdp set-credentials optisigns Opti$MAC;
 gsettings set org.gnome.desktop.remote-desktop.rdp enable true
 gsettings set org.gnome.desktop.remote-desktop.rdp view-only false
 
