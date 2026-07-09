@@ -40,6 +40,23 @@ gsettings set org.gnome.desktop.notifications show-banners false
 
 echo "GNOME power and notification settings applied."
 
+#
+
+mkdir -p ~/.local/share/gnome-remote-desktop/;
+
+openssl req -newkey rsa:2048 -nodes \
+  -keyout ~/.local/share/gnome-remote-desktop/tls.key \
+  -x509 -days 730 \
+  -out ~/.local/share/gnome-remote-desktop/tls.crt \
+  -subj "/CN=debian-remote-desktop"
+
+grdctl rdp set-tls-key ~/.local/share/gnome-remote-desktop/tls.key
+grdctl rdp set-tls-cert ~/.local/share/gnome-remote-desktop/tls.crt
+
+grdctl rdp set-credentials optisigns Opti;
+gsettings set org.gnome.desktop.remote-desktop.rdp enable true
+gsettings set org.gnome.desktop.remote-desktop.rdp view-only false
+
 # -----------------------------
 # Download userSpaceTwo
 # -----------------------------
