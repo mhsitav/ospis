@@ -45,6 +45,19 @@ echo "GNOME power and notification settings applied."
 # -----------------------------
 # Configure RDP
 # -----------------------------
+python3 -c '
+import dbus
+bus = dbus.SessionBus()
+try:
+    secrets = bus.get_object("org.freedesktop.secrets", "/org/freedesktop/secrets")
+    service = dbus.Interface(secrets, "org.freedesktop.Secret.Service")
+    
+    props = {"org.freedesktop.Secret.Collection.Label": "DefaultKeyring"}
+    service.CreateCollection(props, "")
+    print("Successfully created keychain")
+except Exception as e:
+    print(f"Error: {e}")
+'
 
 mkdir -p ~/.local/share/gnome-remote-desktop/;
 
