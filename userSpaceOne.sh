@@ -43,38 +43,6 @@ gsettings set org.gnome.desktop.notifications show-banners false
 echo "GNOME power and notification settings applied."
 
 # -----------------------------
-# Configure RDP
-# -----------------------------
-python3 -c '
-import dbus
-bus = dbus.SessionBus()
-try:
-    secrets = bus.get_object("org.freedesktop.secrets", "/org/freedesktop/secrets")
-    service = dbus.Interface(secrets, "org.freedesktop.Secret.Service")
-    
-    props = {"org.freedesktop.Secret.Collection.Label": "DefaultKeyring"}
-    service.CreateCollection(props, "")
-    print("Successfully created keychain")
-except Exception as e:
-    print(f"Error: {e}")
-'
-
-mkdir -p ~/.local/share/gnome-remote-desktop/;
-
-openssl req -newkey rsa:2048 -nodes \
-  -keyout ~/.local/share/gnome-remote-desktop/tls.key \
-  -x509 -days 730 \
-  -out ~/.local/share/gnome-remote-desktop/tls.crt \
-  -subj "/CN=debian-remote-desktop"
-
-grdctl rdp set-tls-key ~/.local/share/gnome-remote-desktop/tls.key
-grdctl rdp set-tls-cert ~/.local/share/gnome-remote-desktop/tls.crt
-
-grdctl rdp set-credentials optisigns Opti$MAC;
-gsettings set org.gnome.desktop.remote-desktop.rdp enable true
-gsettings set org.gnome.desktop.remote-desktop.rdp view-only false
-
-# -----------------------------
 # Download userSpaceTwo
 # -----------------------------
 echo "Downloading User Space Two script...";
