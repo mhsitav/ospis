@@ -51,16 +51,16 @@ rm -- "$0"
 
 rm "$DESKTOP_FILE";
 
-cat << EOF > "$OPTISIGNS_STARTUP_FILE"
-[Desktop Entry]
-Type=Application
-Version=1.0
-Name=OptiSigns Digital Signage
-Comment=OptiSigns Digital Signage startup script
-Exec=$OPTISIGNS_APPIMAGE
-StartupNotify=false
-Terminal=false
-EOF
+#cat << EOF > "$OPTISIGNS_STARTUP_FILE"
+#[Desktop Entry]
+#Type=Application
+#Version=1.0
+#Name=OptiSigns Digital Signage
+#Comment=OptiSigns Digital Signage startup script
+#Exec=$OPTISIGNS_APPIMAGE
+#StartupNotify=false
+#Terminal=false
+#EOF
 
 
 echo "===== MHS User Space Configuration 2/2 Completed: $(date) ====="
