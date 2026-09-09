@@ -28,6 +28,14 @@ else
   echo "WARNING: GNOME extension no-overview@fthx not found."
 fi
 
+
+# -----------------------------
+# Disable gapplication-service autostart
+# -----------------------------
+gsettings set org.gnome.software download-updates false;
+gsettings set org.gnome.desktop.search-providers disabled "['org.gnome.Software.desktop']";
+
+
 # -----------------------------
 # Download & Install OptiSigns
 # -----------------------------
@@ -40,6 +48,7 @@ echo "Launching OptiSigns AppImage..."
 export APPIMAGE_SILENT_INSTALL=0
 "$OPTISIGNS_APPIMAGE" >/dev/null 2>&1 &
 
+
 # -----------------------------
 # Install OptiSigns Remote Agent
 # -----------------------------
@@ -50,17 +59,6 @@ echo "Removing userSpaceTwo setup script..."
 rm -- "$0"
 
 rm "$DESKTOP_FILE";
-
-#cat << EOF > "$OPTISIGNS_STARTUP_FILE"
-#[Desktop Entry]
-#Type=Application
-#Version=1.0
-#Name=OptiSigns Digital Signage
-#Comment=OptiSigns Digital Signage startup script
-#Exec=$OPTISIGNS_APPIMAGE
-#StartupNotify=false
-#Terminal=false
-#EOF
 
 
 echo "===== MHS User Space Configuration 2/2 Completed: $(date) ====="
