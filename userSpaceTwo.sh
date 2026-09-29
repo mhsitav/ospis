@@ -35,6 +35,13 @@ fi
 gsettings set org.gnome.software download-updates false;
 gsettings set org.gnome.desktop.search-providers disabled "['org.gnome.Software.desktop']";
 
+systemctl --user mask gnome-software-service.service
+systemctl --user mask org.gnome.Software.service
+systemctl --user stop gnome-software-service.service
+systemctl --user stop org.gnome.Software.service
+systemctl --user daemon-reload
+cp /etc/xdg/autostart/org.gnome.Software.desktop ~/.config/autostart/
+echo "Hidden=true" >> ~/.config/autostart/org.gnome.Software.desktop
 
 # -----------------------------
 # Download & Install OptiSigns
